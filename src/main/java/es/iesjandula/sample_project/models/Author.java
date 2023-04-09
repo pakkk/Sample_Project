@@ -13,17 +13,22 @@ public class Author implements Comparable<Author>
 	
 	/** Attribute - Last Name */
 	private String lastName ;
+	
+	/** Attribute - Overview */
+	private String overview ;
 
 	/**
 	 * This is the constructor for authors
 	 * 
 	 * @param firstName with the first name
 	 * @param lastName  with the last name
+	 * @param overview  with the overview
 	 */
-	public Author(String firstName, String lastName)
+	public Author(String firstName, String lastName, String overview)
 	{
 		this.firstName = firstName ;
 		this.lastName  = lastName ;
+		this.overview  = overview ;
 	}
 
 	/**
@@ -51,11 +56,27 @@ public class Author implements Comparable<Author>
 	}
 
 	/**
-	 * @param lastName the last name to set
+	 * @param lastName the lastName to set
 	 */
-	public void setLastname(String lastName)
+	public void setLastName(String lastName)
 	{
 		this.lastName = lastName ;
+	}
+
+	/**
+	 * @return the overview
+	 */
+	public String getOverview()
+	{
+		return this.overview ;
+	}
+
+	/**
+	 * @param overview the overview to set
+	 */
+	public void setOverview(String overview)
+	{
+		this.overview = overview ;
 	}
 
 	/**
@@ -64,7 +85,7 @@ public class Author implements Comparable<Author>
 	@Override
 	public String toString()
 	{
-		return "Author [firstName=" + this.firstName + ", lastName=" + this.lastName + "]";
+		return "Author [firstName=" + this.firstName + ", lastName=" + this.lastName + ", overview=" + this.overview + "]";
 	}
 
 	/**
@@ -116,6 +137,16 @@ public class Author implements Comparable<Author>
 		{
 			return false ;
 		}
+		// Check if the 'overview' of this class is null and the attribute 'overview' of the object is not null
+		else if (this.overview == null && other.overview != null)
+		{
+			return false ;
+		}
+		// Check if the values of the input class and object is not the same
+		else if (!this.overview.equals(other.overview))
+		{
+			return false ;
+		}
 		
 		// If we are here is because both instances are the same
 		return true ;
@@ -139,6 +170,12 @@ public class Author implements Comparable<Author>
 	    {
 	    	// Check the firstName
 	        result = this.firstName.compareTo(anotherAuthor.firstName) ;
+	        
+	        if (result == 0)
+	        {
+		    	// Check the overview
+		        result = this.overview.compareTo(anotherAuthor.overview) ;
+	        }
 	    }
 
 	    return result ;

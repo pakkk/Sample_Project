@@ -57,8 +57,8 @@ public class Launcher
 	 */
 	private void startProcess()
 	{
-		// Create a unique instance of Scanner
-		Scanner scanner = new Scanner(System.in) ;
+		// Create a unique instance of Scanner. Setting the delimiter as carriage return (\n)
+		Scanner scanner = new Scanner(System.in).useDelimiter("\n") ;
 		
 		// Show a menu and choose an option
 		int option = this.showMainMenu(scanner) ;
@@ -127,24 +127,28 @@ public class Launcher
 	 * @param scanner with the scanner
 	 */
 	private void createAuthor(Scanner scanner)
-	{
+	{	
 		// Get the first name from the console
 		System.out.print("Author first name: ") ;
-		String firstName  = scanner.next() ;
+		String firstName = scanner.next() ;
 		
 		// Get the lastname from the console
 		System.out.print("Author last name: ") ;
 		String lastName = scanner.next() ;
 		
+		// Get the author overview
+		System.out.println("Author overview: ") ;
+		String overview = scanner.next() ;
+		
 		// Check the values of the console
-		if (firstName.equals(Constants.EMPTY_STRING) || lastName.equals(Constants.EMPTY_STRING))
+		if (firstName.equals(Constants.EMPTY_STRING) || lastName.equals(Constants.EMPTY_STRING) || overview.equals(Constants.EMPTY_STRING))
 		{
 			System.out.println("Invalid author values") ;
 		}
 		else
 		{
 			// Create a new instance of Author
-			Author author = new Author(firstName, lastName) ;
+			Author author = new Author(firstName, lastName, overview) ;
 			
 			// Add to the array
 			this.authors[this.currentIndexAuthor] = author ;
